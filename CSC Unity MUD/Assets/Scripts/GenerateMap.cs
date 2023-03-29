@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GenerateMap : MonoBehaviour
 {
-    int size = 30;
+    int size = 20;
     public GameObject[] room;
     public GameObject preRoom;
+    public GameObject wall;
+    public GameObject wallWithExit;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +18,7 @@ public class GenerateMap : MonoBehaviour
         generateRooms(xOff,yOff);
     }
 
-    // Update is called once per frame
-    
-    void Update()
-    {
-       
-    }
+
     void generateRooms(int xOff, int yOff)
     {
         int prog = 0;
@@ -45,6 +42,44 @@ public class GenerateMap : MonoBehaviour
                 prog++;
             }
         }
+        generateWalls();
         
     }
+
+    void generateWalls()
+    {
+        for(int i = 0; i < size * size; i++)
+        {
+            if(room[i] != null)
+            {
+                var roomScript = room[i].GetComponent<Room>();
+                
+                if(i >= size && room[i - size] != null)
+                {
+                    roomScript.walls[0] = Instantiate(wallWithExit, roomScript.wallPoints[0].transform.position, roomScript.wallPoints[0].transform.rotation);
+                }
+                if(i <= room.Length - size - 1 && room[i+size] != null)
+                {
+                    roomScript.walls[1] = Instantiate(wallWithExit, roomScript.wallPoints[1].transform.position, roomScript.wallPoints[1].transform.rotation);
+                }
+                if(i % size != 0 && room[i-1] != null)
+                {
+                    roomScript.walls[2] = Instantiate(wallWithExit, roomScript.wallPoints[2].transform.position, roomScript.wallPoints[2].transform.rotation);
+                }
+                if(i % size != size - 1 && room[i+1] != null)
+                {
+                    roomScript.walls[3] = Instantiate(wallWithExit, roomScript.wallPoints[3].transform.position, roomScript.wallPoints[3].transform.rotation);
+                }
+
+                for(int j = 0; j < 4; j++)
+                {
+                    if(roomScript.walls[j] == null)
+                    {
+                        roomScript.walls[j] = Instantiate(wall, roomScript.wallPoints[j].transform.position, roomScript.wallPoints[j].transform.rotation);
+                    }
+                }
+            }
+        }
+    }
+
 }
