@@ -6,6 +6,7 @@ public class Look : MonoBehaviour
 {
     public Transform player;
     public float sensitivity;
+    float y = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +14,11 @@ public class Look : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        float y = 0;
-        y = Mathf.Clamp(Input.mousePosition.y, -90f, 90f);
-        transform.localRotation = Quaternion.AngleAxis(y * sensitivity, Vector3.left);
-        player.localRotation = Quaternion.AngleAxis(-Input.mousePosition.x * sensitivity, Vector3.up);
+        y = Input.mousePosition.y * sensitivity;
+        y = Mathf.Clamp(y, -90f, 90f);
+        transform.localRotation = Quaternion.AngleAxis(y, Vector3.left);
+        player.localRotation = Quaternion.AngleAxis(Input.mousePosition.x * sensitivity, Vector3.up);
     }
 }
