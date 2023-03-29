@@ -15,8 +15,9 @@ public class Look : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float y = Mathf.Clamp(Input.mousePosition.y, -90, 90);
+        float y = 0;
+        y = Mathf.Clamp(Input.mousePosition.y, -90f, 90f);
         transform.localRotation = Quaternion.AngleAxis(y * sensitivity, Vector3.left);
-        player.localRotation = Quaternion.AngleAxis(Input.mousePosition.x * sensitivity, Vector3.up);
+        player.localRotation = Quaternion.AngleAxis(-Input.mousePosition.x * sensitivity, Vector3.up);
     }
 }
