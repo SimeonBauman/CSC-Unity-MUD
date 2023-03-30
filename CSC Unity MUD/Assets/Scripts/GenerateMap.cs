@@ -12,6 +12,7 @@ public class GenerateMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RenderSettings.ambientLight = Color.black;
         room = new GameObject[size * size];
         int xOff = Random.Range(0, 10000);
         int yOff = Random.Range(0, 10000);
@@ -54,21 +55,51 @@ public class GenerateMap : MonoBehaviour
             {
                 var roomScript = room[i].GetComponent<Room>();
                 
-                if(i >= size && room[i - size] != null)
+                if(i >= size && room[i - size] != null)// check north
                 {
-                    roomScript.walls[0] = Instantiate(wallWithExit, roomScript.wallPoints[0].transform.position, roomScript.wallPoints[0].transform.rotation);
+                    if (room[i - size].GetComponent<Room>().walls[1] != null)
+                    {
+                        roomScript.walls[0] = room[i - size].GetComponent<Room>().walls[1];
+                    }
+                    else
+                    {
+                        roomScript.walls[0] = Instantiate(wallWithExit, roomScript.wallPoints[0].transform.position, roomScript.wallPoints[0].transform.rotation);
+                    }
                 }
-                if(i <= room.Length - size - 1 && room[i+size] != null)
+                if(i <= room.Length - size - 1 && room[i+size] != null)//check south
                 {
-                    roomScript.walls[1] = Instantiate(wallWithExit, roomScript.wallPoints[1].transform.position, roomScript.wallPoints[1].transform.rotation);
+                    if (room[i + size].GetComponent<Room>().walls[0] != null)
+                    {
+                        roomScript.walls[1] = room[i + size];
+                    }
+                    else
+                    {
+                        roomScript.walls[1] = Instantiate(wallWithExit, roomScript.wallPoints[1].transform.position, roomScript.wallPoints[1].transform.rotation);
+                    }
                 }
-                if(i % size != 0 && room[i-1] != null)
+                if(i % size != 0 && room[i-1] != null)// check east
                 {
-                    roomScript.walls[2] = Instantiate(wallWithExit, roomScript.wallPoints[2].transform.position, roomScript.wallPoints[2].transform.rotation);
+                    if (room[i - 1].GetComponent<Room>().walls[3] != null)
+                    {
+                        roomScript.walls[2] = room[i - 1];
+                    }
+                    else
+                    {
+                        roomScript.walls[2] = Instantiate(wallWithExit, roomScript.wallPoints[2].transform.position, roomScript.wallPoints[2].transform.rotation);
+                    }
+                    
                 }
-                if(i % size != size - 1 && room[i+1] != null)
+                if(i % size != size - 1 && room[i+1] != null)//check west
                 {
-                    roomScript.walls[3] = Instantiate(wallWithExit, roomScript.wallPoints[3].transform.position, roomScript.wallPoints[3].transform.rotation);
+                    if (room[i + 1].GetComponent<Room>().walls[2] != null)
+                    {
+                        roomScript.walls[3] = room[i+1]; 
+                    }
+                    else
+                    {
+                        roomScript.walls[3] = Instantiate(wallWithExit, roomScript.wallPoints[3].transform.position, roomScript.wallPoints[3].transform.rotation);
+                    }
+                    
                 }
 
                 for(int j = 0; j < 4; j++)
