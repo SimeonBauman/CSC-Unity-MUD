@@ -26,6 +26,7 @@ public class GenerateMap : MonoBehaviour
     {
         if (going)
         {
+            
             checkRenderDistance();
         }
     }
@@ -43,7 +44,7 @@ public class GenerateMap : MonoBehaviour
                 Debug.Log((Mathf.PerlinNoise(xCord, yCord)));
                 if (Mathf.PerlinNoise(xCord, yCord) <= .5)
                 {
-                    room[prog] = Instantiate(preRoom, new Vector3(i * 20, 0, j * 20), new Quaternion(0, 0, 0, 0));
+                    room[prog] = Instantiate(preRoom, new Vector3(i * 40, 0, j * 40), new Quaternion(0, 0, 0, 0));
                     
                 }
                 else
@@ -53,6 +54,7 @@ public class GenerateMap : MonoBehaviour
                 prog++;
             }
         }
+        
         generateWalls();
         
     }
@@ -121,9 +123,29 @@ public class GenerateMap : MonoBehaviour
                 }
             }
         }
+        placePlayer();
         going = true;
     }
 
+    void placePlayer()
+    {
+        int i = Random.Range(0, size*size);
+        Debug.Log(i);
+        if (room[i] != null)
+        {
+            
+            Debug.Log(room[i].transform.position);
+
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position = new Vector3(room[i].transform.position.x, .75f, room[i].transform.position.z);
+            player.GetComponent<CharacterController>().enabled = true;
+        }
+        else
+        {
+            placePlayer();
+        }
+        
+    }
     void checkRenderDistance()
     {
         
@@ -133,7 +155,7 @@ public class GenerateMap : MonoBehaviour
             if (room[i] != null)
             {
                 float dist = Vector3.Distance(player.transform.position, room[i].transform.position);
-                if (dist > renderdist * 20)
+                if (dist > renderdist * 40)
                 {
                     room[i].GetComponent<Room>().disableRoom();
                 }
