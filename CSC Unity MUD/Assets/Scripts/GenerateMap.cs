@@ -9,16 +9,26 @@ public class GenerateMap : MonoBehaviour
     public GameObject preRoom;
     public GameObject wall;
     public GameObject wallWithExit;
+    public GameObject player;
+    public float renderdist = 5;
+    bool going = false;
     // Start is called before the first frame update
     void Start()
     {
-        RenderSettings.ambientLight = Color.black;
+        
         room = new GameObject[size * size];
         int xOff = Random.Range(0, 10000);
         int yOff = Random.Range(0, 10000);
         generateRooms(xOff,yOff);
     }
 
+    private void FixedUpdate()
+    {
+        if (going)
+        {
+            checkRenderDistance();
+        }
+    }
 
     void generateRooms(int xOff, int yOff)
     {
@@ -111,6 +121,28 @@ public class GenerateMap : MonoBehaviour
                 }
             }
         }
+        going = true;
     }
 
+    void checkRenderDistance()
+    {
+        
+
+        for(int i = 0; i < room.Length; i++)
+        {
+            if (room[i] != null)
+            {
+                float dist = Vector3.Distance(player.transform.position, room[i].transform.position);
+                if (dist > renderdist * 20)
+                {
+                    room[i].GetComponent<Room>().disableRoom();
+                }
+                else
+                {
+                    room[i].SetActive(true);
+                    room[i].GetComponent<Room>().enableRoom();
+                }
+            }
+        }
+    }
 }
