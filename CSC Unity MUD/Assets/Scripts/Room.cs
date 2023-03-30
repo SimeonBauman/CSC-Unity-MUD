@@ -42,5 +42,6 @@ public class Room : MonoBehaviour
         Color color = new Color32(System.Convert.ToByte(Random.Range(0, 255)), System.Convert.ToByte(Random.Range(0, 255)), System.Convert.ToByte(Random.Range(0, 255)), 255);
         lig.color = color;
         bulb.GetComponent<Renderer>().material.color = new Color32((byte)color.r,(byte)color.g,(byte)color.b, 166);
+        
     }
 }
