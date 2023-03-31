@@ -19,6 +19,7 @@ public class GenerateMap : MonoBehaviour
     public TMP_Text mathText;
     public TMP_Text viewText;
 
+    public GameObject loadingText;
     
     // Start is called before the first frame update
    
@@ -51,12 +52,18 @@ public class GenerateMap : MonoBehaviour
     public void onCreate()
     {
         createScreen.SetActive(false);
+        loadingText.SetActive(true);
+        StartCoroutine(startCreation());
+    }
+    IEnumerator startCreation()
+    {
+        yield return new WaitForEndOfFrame();
         room = new GameObject[size * size];
         int xOff = Random.Range(0, 10000);
         int yOff = Random.Range(0, 10000);
-        generateRooms(xOff, yOff);
+        StartCoroutine(generateRooms(xOff, yOff));
     }
-    void generateRooms(int xOff, int yOff)
+    IEnumerator generateRooms(int xOff, int yOff)
     {
         int prog = 0;
         for (int i = 0; i < size; i++)
@@ -77,6 +84,7 @@ public class GenerateMap : MonoBehaviour
                     room[prog] = null;
                 }
                 prog++;
+                yield return new WaitForEndOfFrame();
             }
         }
         
@@ -192,4 +200,6 @@ public class GenerateMap : MonoBehaviour
             }
         }
     }
+
+    
 }
