@@ -158,7 +158,7 @@ MonoBehaviour:
   wallWithExit: {fileID: 1618258599916505039, guid: d6fd98ae5c6120140ac1ebca5ef3cdb8, type: 3}
   player: {fileID: 975845260}
   renderdist: 4
-  loadingText: {fileID: 0}
+  loadingText: {fileID: 2095827990}
 --- !u!4 &157924300
 Transform:
   m_ObjectHideFlags: 0

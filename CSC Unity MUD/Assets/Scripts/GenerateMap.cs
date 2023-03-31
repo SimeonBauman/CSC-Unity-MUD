@@ -21,7 +21,7 @@ public class GenerateMap : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-       
+        Random.InitState(Data.RSeed);
         this.renderdist = Data.renderDist;
         this.size = Data.mapSize;
         startCreation();
