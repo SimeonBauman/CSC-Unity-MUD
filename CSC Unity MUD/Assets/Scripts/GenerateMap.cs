@@ -157,6 +157,7 @@ public class GenerateMap : MonoBehaviour
             }
         }
         placePlayer();
+        loadingText.SetActive(true);
         going = true;
     }
 

@@ -46,8 +46,10 @@ public class LoadingText : MonoBehaviour
             lText.text = currentString + "|";
 
             yield return new WaitForSeconds(.4f);
-
-            lText.text = currentString + " ";
+            if (!typing)
+            {
+                lText.text = currentString + " ";
+            }
 
             yield return new WaitForSeconds(.4f);
         }
