@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class GenerateMap : MonoBehaviour
 {
     int size = 20;
@@ -13,16 +14,19 @@ public class GenerateMap : MonoBehaviour
     public float renderdist = 5;
     bool going = false;
 
-    public GameObject createScreen;
-    public GameObject sizeInput;
-    public GameObject viewInput;
-    public TMP_Text mathText;
-    public TMP_Text viewText;
+   
 
     public GameObject loadingText;
-    
+
     // Start is called before the first frame update
-   
+    private void Start()
+    {
+       
+        this.renderdist = Data.renderDist;
+        this.size = Data.mapSize;
+        startCreation();
+
+    }
 
     private void FixedUpdate()
     {
@@ -31,37 +35,17 @@ public class GenerateMap : MonoBehaviour
             
             checkRenderDistance();
         }
-        else
-        {
-            string sizeText = sizeInput.GetComponent<TMP_InputField>().text;
-            string rendText = viewInput.GetComponent<TMP_InputField>().text;
-
-            if (sizeText.Length > 0)
-            {
-                int.TryParse(sizeText,out size);
-                mathText.text = size.ToString() + " * " + size.ToString() + " = " + (size * size).ToString() + " Rooms";
-            }
-
-            if(rendText.Length > 0)
-            {
-                float.TryParse(rendText,out renderdist);
-                viewText.text = "Render Distance: " + rendText + " Rooms";
-            }
-        }
+        
     }
-    public void onCreate()
+    
+    void startCreation()
     {
-        createScreen.SetActive(false);
-        loadingText.SetActive(true);
-        StartCoroutine(startCreation());
-    }
-    IEnumerator startCreation()
-    {
-        yield return new WaitForEndOfFrame();
+        
         room = new GameObject[size * size];
         int xOff = Random.Range(0, 10000);
         int yOff = Random.Range(0, 10000);
         StartCoroutine(generateRooms(xOff, yOff));
+        
     }
     IEnumerator generateRooms(int xOff, int yOff)
     {
@@ -84,6 +68,7 @@ public class GenerateMap : MonoBehaviour
                     room[prog] = null;
                 }
                 prog++;
+                
                 yield return new WaitForEndOfFrame();
             }
         }
@@ -157,13 +142,14 @@ public class GenerateMap : MonoBehaviour
             }
         }
         placePlayer();
-        loadingText.SetActive(true);
+        Data.mapReady = true;
         going = true;
     }
 
     void placePlayer()
     {
         int i = Random.Range(0, size*size);
+        loadingText.SetActive(false);
         Debug.Log(i);
         if (room[i] != null)
         {
