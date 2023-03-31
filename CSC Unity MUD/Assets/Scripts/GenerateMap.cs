@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GenerateMap : MonoBehaviour
 {
     int size = 20;
@@ -12,15 +12,16 @@ public class GenerateMap : MonoBehaviour
     public GameObject player;
     public float renderdist = 5;
     bool going = false;
+
+    public GameObject createScreen;
+    public GameObject sizeInput;
+    public GameObject viewInput;
+    public TMP_Text mathText;
+    public TMP_Text viewText;
+
+    
     // Start is called before the first frame update
-    void Start()
-    {
-        
-        room = new GameObject[size * size];
-        int xOff = Random.Range(0, 10000);
-        int yOff = Random.Range(0, 10000);
-        generateRooms(xOff,yOff);
-    }
+   
 
     private void FixedUpdate()
     {
@@ -29,8 +30,32 @@ public class GenerateMap : MonoBehaviour
             
             checkRenderDistance();
         }
-    }
+        else
+        {
+            string sizeText = sizeInput.GetComponent<TMP_InputField>().text;
+            string rendText = viewInput.GetComponent<TMP_InputField>().text;
 
+            if (sizeText.Length > 0)
+            {
+                int.TryParse(sizeText,out size);
+                mathText.text = size.ToString() + " * " + size.ToString() + " = " + (size * size).ToString() + " Rooms";
+            }
+
+            if(rendText.Length > 0)
+            {
+                float.TryParse(rendText,out renderdist);
+                viewText.text = "Render Distance: " + rendText + " Rooms";
+            }
+        }
+    }
+    public void onCreate()
+    {
+        createScreen.SetActive(false);
+        room = new GameObject[size * size];
+        int xOff = Random.Range(0, 10000);
+        int yOff = Random.Range(0, 10000);
+        generateRooms(xOff, yOff);
+    }
     void generateRooms(int xOff, int yOff)
     {
         int prog = 0;
@@ -137,7 +162,7 @@ public class GenerateMap : MonoBehaviour
             Debug.Log(room[i].transform.position);
 
             player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = new Vector3(room[i].transform.position.x, .75f, room[i].transform.position.z);
+            player.transform.position = new Vector3(room[i].transform.position.x, 1f, room[i].transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
         }
         else
