@@ -46,4 +46,6 @@ public class Room : MonoBehaviour
         bulb.GetComponent<Renderer>().material.color = new Color32((byte)color.r,(byte)color.g,(byte)color.b, 166);
         
     }
+
+    
 }

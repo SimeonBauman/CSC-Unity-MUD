@@ -22,7 +22,11 @@ public class Look : MonoBehaviour
         y = Mathf.Clamp(y, -90f, 90f);
         transform.localRotation = Quaternion.AngleAxis(y, Vector3.left);
         player.localRotation = Quaternion.AngleAxis(Input.mousePosition.x * sensitivity, Vector3.up);
-        shootRay();
+        if (Input.GetMouseButtonDown(0)) 
+        { 
+            shootRay(); 
+        }
+       
     }
 
     void shootRay()
@@ -30,7 +34,8 @@ public class Look : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
-            hit.transform.gameObject.SetActive(false);
+            hit.transform.gameObject.GetComponent<EnemyBrain>().health -= 10;
+            
         }
     }
 }

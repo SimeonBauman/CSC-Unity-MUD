@@ -182,8 +182,9 @@ public class GenerateMap : MonoBehaviour
                     if (Random.Range(0, 10) < 5)
                     {
                         GameObject m = Instantiate(monster, g.transform);
-                        m.transform.localPosition = new Vector3(Random.Range(-15, 15), 2, Random.Range(-15, 15));
+                        m.transform.localPosition = new Vector3(Random.Range(-9.5f, 9.5f), 2, Random.Range(-9.5f, 9.5f));
                         m.transform.localScale = new Vector3(1, 2, 1);
+                        m.GetComponent<EnemyBrain>().player = this.player;
                         g.GetComponent<Room>().enemies[j] = m;                    
                     }
                 }
