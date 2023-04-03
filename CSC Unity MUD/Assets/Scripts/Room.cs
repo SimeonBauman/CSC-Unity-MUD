@@ -7,8 +7,10 @@ public class Room : MonoBehaviour
     public GameObject[] walls = new GameObject[4];
     public GameObject[] wallPoints = new GameObject[4];
     public GameObject bulb;
+    public GameObject[] enemies = new GameObject[4];
     private void Start()
     {
+        
         getLightColor();
     }
     public void enableRoom()

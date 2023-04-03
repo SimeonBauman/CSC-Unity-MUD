@@ -14,7 +14,7 @@ public class GenerateMap : MonoBehaviour
     public float renderdist = 5;
     bool going = false;
 
-   
+    public GameObject monster;
 
     public GameObject loadingText;
 
@@ -141,6 +141,7 @@ public class GenerateMap : MonoBehaviour
                 }
             }
         }
+        generateEnemies();
         placePlayer();
         Data.mapReady = true;
         going = true;
@@ -157,7 +158,7 @@ public class GenerateMap : MonoBehaviour
             Debug.Log(room[i].transform.position);
 
             player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = new Vector3(room[i].transform.position.x, 1f, room[i].transform.position.z);
+            player.transform.position = new Vector3(room[i].transform.position.x, 2f, room[i].transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
         }
         else
@@ -166,6 +167,31 @@ public class GenerateMap : MonoBehaviour
         }
         
     }
+    
+    void generateEnemies()
+    {
+        for(int i = 0; i < size * size; i++)
+        {
+            if(room[i] != null)
+            {
+                GameObject g = room[i];
+                int r = Random.Range(0, 5);
+                for(int j = 0; j < r; j++)
+                {
+                    int t = Random.Range(0, 10);
+                    if (Random.Range(0, 10) < 5)
+                    {
+                        GameObject m = Instantiate(monster, g.transform);
+                        m.transform.localPosition = new Vector3(Random.Range(-15, 15), 2, Random.Range(-15, 15));
+                        m.transform.localScale = new Vector3(1, 2, 1);
+                        g.GetComponent<Room>().enemies[j] = m;                    
+                    }
+                }
+
+            }
+        }
+    }
+    
     void checkRenderDistance()
     {
         
