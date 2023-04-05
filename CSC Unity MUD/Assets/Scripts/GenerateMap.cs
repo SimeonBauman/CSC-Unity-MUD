@@ -158,7 +158,7 @@ public class GenerateMap : MonoBehaviour
             Debug.Log(room[i].transform.position);
 
             player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = new Vector3(room[i].transform.position.x, 2f, room[i].transform.position.z);
+            player.transform.position = new Vector3(room[i].transform.position.x, 0f, room[i].transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
         }
         else

@@ -6,37 +6,60 @@ public class EnemyBrain : MonoBehaviour
 {
 
     public int health = 0;
-    public int speed = 10;
+    float speed = 20f;
     public Transform target;
     public GameObject player;
     GameObject parentRoom;
-    public CharacterController controller;
+    public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         target = player.transform;
         parentRoom = this.GetComponentInParent<Transform>().gameObject;
-        controller = this.GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (target != null)
-        {
-            lookAtTarget();
-            checkViewTarget();
-            Vector3 move = transform.forward;
-            if((Vector3.Distance(new Vector2(transform.position.x,transform.position.z), new Vector2(target.position.x,target.position.z)) > 1)){
-                controller.Move(move * .01f);
-            }
-        }
-        else if(Vector3.Distance(transform.position, player.transform.position) < 8)
-        {
-            target = player.transform;
-        }
+        checkHealth();
+        movement();
+        
     }
     
+
+    void movement()
+    {
+        if (target != null)
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) > 5)
+            {
+                rb.velocity = transform.forward * speed;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
+
+            lookAtTarget();
+            if (!canSeePlayer())
+            {
+                target = null;
+                rb.velocity = Vector3.zero;
+            }
+        }
+        else if (canSeePlayer() || Vector3.Distance(transform.position, player.transform.position) < 14)
+        {
+            target = player.transform;
+            lookAtTarget();
+
+        }
+        else
+        {
+            target = null;
+            rb.velocity = Vector3.zero;
+        }
+    }
 
     void lookAtTarget()
     {
@@ -46,28 +69,38 @@ public class EnemyBrain : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 100);
         
     }
-
-    void checkViewTarget()
+    bool canSeePlayer()
     {
-        LayerMask l = 1 << 7;
+       
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
             if (hit.transform.gameObject == player)
             {
-                Debug.Log("can see " + target.gameObject.name);
+                return true;
             }
             else
             {
-                target = null;
+                return false;
             }
 
         }
-
-        
-
-        
+        return false;
     }
 
-    
+    void checkHealth()
+    {
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
+
+
+
+
+
+
 }
