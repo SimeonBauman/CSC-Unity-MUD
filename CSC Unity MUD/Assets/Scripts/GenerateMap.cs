@@ -100,7 +100,7 @@ public class GenerateMap : MonoBehaviour
                 {
                     if (room[i + size].GetComponent<Room>().walls[0] != null)
                     {
-                        roomScript.walls[1] = room[i + size];
+                        roomScript.walls[1] = room[i + size].GetComponent<Room>().walls[0];
                     }
                     else
                     {
@@ -111,7 +111,7 @@ public class GenerateMap : MonoBehaviour
                 {
                     if (room[i - 1].GetComponent<Room>().walls[3] != null)
                     {
-                        roomScript.walls[2] = room[i - 1];
+                        roomScript.walls[2] = room[i - 1].GetComponent<Room>().walls[3];
                     }
                     else
                     {
@@ -123,7 +123,7 @@ public class GenerateMap : MonoBehaviour
                 {
                     if (room[i + 1].GetComponent<Room>().walls[2] != null)
                     {
-                        roomScript.walls[3] = room[i+1]; 
+                        roomScript.walls[3] = room[i+1].GetComponent<Room>().walls[2]; 
                     }
                     else
                     {
@@ -185,7 +185,8 @@ public class GenerateMap : MonoBehaviour
                         m.transform.localPosition = new Vector3(Random.Range(-9.5f, 9.5f), 2, Random.Range(-9.5f, 9.5f));
                         m.transform.localScale = new Vector3(1, 2, 1);
                         m.GetComponent<EnemyBrain>().player = this.player;
-                        g.GetComponent<Room>().enemies[j] = m;                    
+                        g.GetComponent<Room>().enemies[j] = m;
+                        g.GetComponent<Room>().liveInhabs += 1;
                     }
                 }
 

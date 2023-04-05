@@ -8,10 +8,19 @@ public class Room : MonoBehaviour
     public GameObject[] wallPoints = new GameObject[4];
     public GameObject bulb;
     public GameObject[] enemies = new GameObject[4];
+    public int liveInhabs = 0;
     private void Start()
     {
         
         getLightColor();
+    }
+
+    private void FixedUpdate()
+    {
+        if(liveInhabs == 0)
+        {
+            enableExits();
+        }
     }
     public void enableRoom()
     {
@@ -47,5 +56,19 @@ public class Room : MonoBehaviour
         
     }
 
+    void enableExits()
+    {
+        for (int i = 0; i < walls.Length; i++){
+            if (walls[i] != null)
+            {
+                if (walls[i].tag.Equals("ExitWall"))
+                {
+                    walls[i].GetComponentInChildren<ExitBehavior>().opened = true;
+                }
+            }
+        }
+        
+
+    }
     
 }
