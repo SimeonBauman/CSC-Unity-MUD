@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 554069623}
   - component: {fileID: 554069628}
   - component: {fileID: 554069627}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Exit Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 7353095675386861563}
   - component: {fileID: 6044599997759911779}
   - component: {fileID: 2771106396747621231}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4255572520866690326}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: wall
   m_TagString: ExitWall
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 4998921373110937018}
   - component: {fileID: 4178003137735957484}
   - component: {fileID: 557051311674171663}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 6511831132948288439}
   - component: {fileID: 6212588567083787971}
   - component: {fileID: 8899190135599765867}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

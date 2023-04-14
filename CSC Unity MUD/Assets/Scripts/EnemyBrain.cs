@@ -6,7 +6,7 @@ public class EnemyBrain : MonoBehaviour
 {
 
     public int health = 0;
-    float speed = 5f;
+    public float speed = 5f;
     public Transform target;
     public GameObject player;
     GameObject parentRoom;
@@ -81,9 +81,9 @@ public class EnemyBrain : MonoBehaviour
     }
     bool canSeePlayer()
     {
-       
+        int layer_mask = LayerMask.GetMask("player visuals","wall");
         RaycastHit hit;
-        if (Physics.Raycast(eyes.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        if (Physics.Raycast(eyes.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity,layer_mask))
         {
             if (hit.transform.gameObject == player)
             {
