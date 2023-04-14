@@ -10,14 +10,14 @@ public class playerHands : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pickUpItem(invetory[0], 0);
+        //pickUpItem(invetory[0], 0);
         if (invetory[1] != null)
         {
             invetory[1].SetActive(false);
         }
-        if (invetory[2] != null)
+        if (invetory[0] != null)
         {
-            invetory[2].SetActive(true);
+            invetory[0].SetActive(true);
         }
     }
 
@@ -43,7 +43,7 @@ public class playerHands : MonoBehaviour
         }
     }
 
-    void pickUpItem(GameObject g, int pos)
+    public void pickUpItem(GameObject g, int pos)
     {
         invetory[pos] = Instantiate(g,hand.transform.position,Quaternion.identity);
         invetory[pos].transform.parent = hand.transform;

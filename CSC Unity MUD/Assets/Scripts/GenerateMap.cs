@@ -160,6 +160,14 @@ public class GenerateMap : MonoBehaviour
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = new Vector3(room[i].transform.position.x, 0f, room[i].transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
+            var ene = room[i].GetComponent<Room>().enemies;
+            for(int j =0; j < ene.Length; j++)
+            {
+                if(ene[j] != null)
+                {
+                    ene[j].GetComponent<EnemyBrain>().health = 0;
+                }
+            }
         }
         else
         {
