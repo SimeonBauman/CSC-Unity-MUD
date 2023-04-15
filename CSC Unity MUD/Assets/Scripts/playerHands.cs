@@ -38,7 +38,7 @@ public class playerHands : MonoBehaviour
                 invetory[active].SetActive(false);
                 invetory[(active + 1) % 2].SetActive(true);
                 active = (active + 1) % 2;
-                invetory[active].transform.position = hand.transform.localPosition;
+                //invetory[active].transform.position = hand.transform.localPosition;
             }
         }
     }
@@ -47,6 +47,7 @@ public class playerHands : MonoBehaviour
     {
         invetory[pos] = Instantiate(g,hand.transform.position,Quaternion.identity);
         invetory[pos].transform.parent = hand.transform;
+        invetory[pos].transform.localRotation = Quaternion.identity;
         //invetory[pos].transform.position =;
     }
 }

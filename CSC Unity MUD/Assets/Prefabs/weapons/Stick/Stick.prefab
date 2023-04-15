@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6630753601141251564}
   - component: {fileID: 8084649027597947344}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   discription: Its a wooden Stick
-  profile: {fileID: 2800000, guid: 7678c1dc014cd464bae23f802798dbec, type: 3}
+  profile: {fileID: 21300000, guid: 7678c1dc014cd464bae23f802798dbec, type: 3}
   itemName: Wooden Stick
 --- !u!1001 &2184572587070030365
 PrefabInstance:
@@ -116,9 +116,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3d20640b4505e524d9d1c5ce9599945c, type: 2}
+    - target: {fileID: -3372522033569347474, guid: 5a241bd6acea98f47bf1f607265dea3a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a241bd6acea98f47bf1f607265dea3a, type: 3}
       propertyPath: m_Name
       value: Stick v1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a241bd6acea98f47bf1f607265dea3a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a241bd6acea98f47bf1f607265dea3a, type: 3}

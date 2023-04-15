@@ -10,16 +10,8 @@ public class PickUpMenu : MonoBehaviour
     public TMP_Text itemName;
     public Image profile;
 
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Button leave;
+    public Button Take;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
