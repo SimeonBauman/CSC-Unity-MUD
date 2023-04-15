@@ -48,9 +48,11 @@ public class ChestController : MonoBehaviour
 
     void takeWeapon()
     {
-        player.GetComponent<playerHands>().pickUpItem(loot, 0);
-        Time.timeScale = 1;
         player.GetComponent<PlayerMove>().itemInfo.SetActive(false);
+        player.GetComponent<playerHands>().menu.SetActive(true);
+        player.GetComponent<playerHands>().showOptions(loot);
+        
+        
         StartCoroutine(destroyChest());
     }
 

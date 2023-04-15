@@ -8,15 +8,5 @@ public class WeaponStats : MonoBehaviour
     public string discription;
     public Sprite profile;
     public string itemName;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 }
