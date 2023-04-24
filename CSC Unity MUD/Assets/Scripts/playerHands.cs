@@ -56,7 +56,11 @@ public class playerHands : MonoBehaviour
 
     public void pickUpItem(GameObject g, int pos)
     {
-        Destroy(invetory[pos]);
+        if (!invetory[pos].tag.Equals("empty"))
+        {
+            Destroy(invetory[pos]);
+        }
+        
         invetory[pos] = Instantiate(g,hand.transform.position,Quaternion.identity);
         invetory[pos].transform.parent = hand.transform;
         invetory[pos].transform.localRotation = Quaternion.identity;
