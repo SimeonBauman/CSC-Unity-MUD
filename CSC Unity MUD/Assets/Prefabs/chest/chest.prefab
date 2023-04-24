@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8e9d19174bb784cb3b2b222ddff340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loot: {fileID: 7631789755629104204, guid: 907286dc13934a744a4e8a2f2ab04037, type: 3}
+  loot: {fileID: 2037446821038086603, guid: 3b51ac09f8eb7e049af7d37bf72d5861, type: 3}
 --- !u!54 &1882533536997601600
 Rigidbody:
   m_ObjectHideFlags: 0
