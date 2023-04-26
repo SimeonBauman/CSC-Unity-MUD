@@ -8,5 +8,6 @@ public class WeaponStats : MonoBehaviour
     public string discription;
     public Sprite profile;
     public string itemName;
+    public float fireRate = 1f;
   
 }

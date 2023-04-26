@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Animations;
 public class playerHands : MonoBehaviour
 {
     public GameObject hand;
@@ -18,9 +19,18 @@ public class playerHands : MonoBehaviour
     public GameObject menu;
 
     GameObject Replacement;
+
+    Animator anim;
+    float fireRate;
+
+    bool canSwing;
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
+        anim.SetBool("isSwinging", false);
+        canSwing = true;
+        
         //pickUpItem(invetory[0], 0);
         if (invetory[1] != null)
         {
@@ -30,12 +40,17 @@ public class playerHands : MonoBehaviour
         {
             invetory[0].SetActive(true);
         }
+        this.fireRate = invetory[0].GetComponent<WeaponStats>().fireRate;
     }
 
     // Update is called once per frame
     void Update()
     {
         switchWeapon();
+        if(Input.GetButtonDown("Fire1") && canSwing)
+        {
+            StartCoroutine(swing());
+        }
     }
 
     void switchWeapon()
@@ -49,6 +64,7 @@ public class playerHands : MonoBehaviour
                 invetory[active].SetActive(false);
                 invetory[(active + 1) % 2].SetActive(true);
                 active = (active + 1) % 2;
+                setStats();
                 //invetory[active].transform.position = hand.transform.localPosition;
             }
         }
@@ -67,6 +83,10 @@ public class playerHands : MonoBehaviour
         if(pos != active)
         {
             invetory[pos].SetActive(false);
+        }
+        else
+        {
+            setStats();
         }
         //invetory[pos].transform.position =;
         Time.timeScale = 1;
@@ -93,4 +113,20 @@ public class playerHands : MonoBehaviour
     {
         pickUpItem(Replacement, 1);
     }
+
+    void setStats()
+    {
+        this.fireRate = invetory[active].GetComponent<WeaponStats>().fireRate;
+    }
+
+    IEnumerator swing()
+    {
+        canSwing = false;
+        anim.SetBool("isSwinging", true);
+        
+        yield return new WaitForSeconds(fireRate);
+        anim.SetBool("isSwinging", false);
+        canSwing = true;
+    }
+
 }
