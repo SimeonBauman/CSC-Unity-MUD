@@ -567,6 +567,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47b9fb295a4776642b19cb7030a3f3f5, type: 3}
+--- !u!1001 &6920758260371384095
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.788425
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.232964
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926195, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8184868607230926199, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
+      propertyPath: m_Name
+      value: Floor no rope
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44164d7e3fb4cb343ab769231a19df94, type: 3}
 --- !u!1001 &9018875342187689002
 PrefabInstance:
   m_ObjectHideFlags: 0

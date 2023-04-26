@@ -7,6 +7,7 @@ TagManager:
   - player
   - ExitWall
   - empty
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - player visuals
   - Enemy Layer
   - wall
-  - 
+  - enemy
   - 
   - 
   - 

@@ -22,8 +22,11 @@ public class playerHands : MonoBehaviour
 
     Animator anim;
     float fireRate;
+    public int damage;
 
     bool canSwing;
+
+    public GameObject eyes;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,15 +64,33 @@ public class playerHands : MonoBehaviour
 
             if (invetory[(active + 1) % 2] != null)
             {
-                invetory[active].SetActive(false);
-                invetory[(active + 1) % 2].SetActive(true);
-                active = (active + 1) % 2;
+                StartCoroutine(switchAni());
                 setStats();
                 //invetory[active].transform.position = hand.transform.localPosition;
             }
         }
     }
-
+    IEnumerator switchAni()
+    {
+        anim.SetBool("isSwitching", true);
+        yield return new WaitForSeconds(.25f);
+        invetory[active].SetActive(false);
+        invetory[(active + 1) % 2].SetActive(true);
+        active = (active + 1) % 2;
+        yield return new WaitForSeconds(.25f);
+        anim.SetBool("isSwitching", false);
+    }
+    void shootRay()
+    {
+        
+        int layer_mask = LayerMask.GetMask("enemy");
+        RaycastHit hit;
+        if (Physics.Raycast(eyes.transform.position, eyes.transform.TransformDirection(Vector3.forward), out hit, 3f, layer_mask))
+        {
+            
+            hit.transform.gameObject.GetComponent<EnemyBrain>().health -= damage;
+        }
+    }
     public void pickUpItem(GameObject g, int pos)
     {
         if (!invetory[pos].tag.Equals("empty"))
@@ -117,6 +138,7 @@ public class playerHands : MonoBehaviour
     void setStats()
     {
         this.fireRate = invetory[active].GetComponent<WeaponStats>().fireRate;
+        this.damage = invetory[active].GetComponent<WeaponStats>().Damage;
     }
 
     IEnumerator swing()
@@ -124,7 +146,9 @@ public class playerHands : MonoBehaviour
         canSwing = false;
         anim.SetBool("isSwinging", true);
         
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSeconds(fireRate/4);
+        shootRay();
+        yield return new WaitForSeconds(fireRate *.75f);
         anim.SetBool("isSwinging", false);
         canSwing = true;
     }

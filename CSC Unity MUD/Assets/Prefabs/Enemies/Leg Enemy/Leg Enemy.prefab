@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5210184451602363253}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Eyes
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,9 +43,9 @@ GameObject:
   - component: {fileID: 4254417564906457628}
   - component: {fileID: 5301631860565905983}
   - component: {fileID: 8253472747735935020}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Leg Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,9 +134,9 @@ GameObject:
   - component: {fileID: 4254417565298700974}
   - component: {fileID: 4254417565298700975}
   - component: {fileID: 4254417565298700960}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,9 +231,9 @@ GameObject:
   - component: {fileID: 4254417566041772340}
   - component: {fileID: 4254417566041772341}
   - component: {fileID: 4254417566041772342}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

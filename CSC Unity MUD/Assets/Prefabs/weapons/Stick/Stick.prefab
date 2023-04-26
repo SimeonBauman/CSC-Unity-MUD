@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6630753601141251564}
   - component: {fileID: 8084649027597947344}
+  - component: {fileID: -3458307474107885268}
   m_Layer: 7
   m_Name: Stick
   m_TagString: Untagged
@@ -49,6 +50,21 @@ MonoBehaviour:
   discription: Its a wooden Stick
   profile: {fileID: 21300000, guid: 7678c1dc014cd464bae23f802798dbec, type: 3}
   itemName: Wooden Stick
+  fireRate: 1
+--- !u!64 &-3458307474107885268
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563424616259668610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &2184572587070030365
 PrefabInstance:
   m_ObjectHideFlags: 0
