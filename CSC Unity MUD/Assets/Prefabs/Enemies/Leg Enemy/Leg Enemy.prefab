@@ -106,6 +106,8 @@ MonoBehaviour:
   player: {fileID: 0}
   rb: {fileID: 0}
   eyes: {fileID: 684458093228577218}
+  attackDistance: 4
+  damage: 5
 --- !u!54 &8253472747735935020
 Rigidbody:
   m_ObjectHideFlags: 0

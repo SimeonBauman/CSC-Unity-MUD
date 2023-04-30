@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -9,12 +10,26 @@ public class PlayerMove : MonoBehaviour
     public bool canMove;
 
     public GameObject itemInfo;
+    public int health = 10;
+    int maxHealth;
+    public GameObject cam;
+
+    public float shakeDuration = 0f;
+
+    public float shakeAmount = 0.03f;
+    public float decreaseFactor = 1.0f;
+    Vector3 originalPos;
+
+    public Image healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
         itemInfo.SetActive(false);
         canMove = true;
-        controller = GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>(); 
+        originalPos = cam.transform.localPosition;
+        maxHealth = health;
     }
 
     // Update is called once per frame
@@ -32,9 +47,37 @@ public class PlayerMove : MonoBehaviour
         {
             GetComponentInChildren<Look>().inMenu = true;
         }
-       
-    }
 
+        if (shakeDuration > 0)
+        {
+            cam.transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+
+            shakeDuration -= Time.deltaTime * decreaseFactor;
+        }
+        else
+        {
+            shakeDuration = 0f;
+            cam.transform.localPosition = originalPos;
+        }
+
+    }
+    public void TakeDamage(int damage)
+    {
+        
+        health-= damage;
+        float d = (float)damage;
+        shakeDuration = d/50;
+        
+        healthBar.transform.localScale = new Vector2(((float)health / (float)maxHealth) * 10, 1);
+        checkHealth();
+    }
     
+    void checkHealth()
+    {
+        if(health <= 0)
+        {
+            Debug.Log("dead");
+        }
+    }
 
 }

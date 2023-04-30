@@ -17,13 +17,14 @@ public class GenerateMap : MonoBehaviour
     public GameObject monster;
 
     public GameObject loadingText;
-
+    public GameObject HealthBar;
     // Start is called before the first frame update
     private void Start()
     {
         Random.InitState(Data.RSeed);
         this.renderdist = Data.renderDist;
         this.size = Data.mapSize;
+        HealthBar.SetActive(false);
         startCreation();
 
     }
@@ -156,7 +157,7 @@ public class GenerateMap : MonoBehaviour
         {
             
             Debug.Log(room[i].transform.position);
-
+            HealthBar.SetActive(true);
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = new Vector3(room[i].transform.position.x, 0f, room[i].transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;

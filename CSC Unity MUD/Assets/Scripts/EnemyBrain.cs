@@ -13,6 +13,10 @@ public class EnemyBrain : MonoBehaviour
     public Rigidbody rb;
     public GameObject eyes;
     Animator ani;
+
+    bool canAttack;
+    public int attackDistance;
+    public int damage = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,7 @@ public class EnemyBrain : MonoBehaviour
         parentRoom = this.GetComponentInParent<Transform>().gameObject;
         rb = GetComponent<Rigidbody>();
         ani = GetComponent<Animator>();
+        canAttack = true;
         if(eyes != null)
         {
             eyes = this.gameObject;
@@ -39,7 +44,7 @@ public class EnemyBrain : MonoBehaviour
     {
         if (target != null)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) > 3)
+            if (Vector3.Distance(transform.position, player.transform.position) > 3 &&  canAttack)
             {
                 rb.velocity = transform.forward * speed;
                 ani.SetBool("isMoving", true);
@@ -48,6 +53,7 @@ public class EnemyBrain : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
                 ani.SetBool("isMoving", false);
+                if (canAttack) StartCoroutine(attack());
             }
 
             lookAtTarget();
@@ -109,7 +115,20 @@ public class EnemyBrain : MonoBehaviour
 
 
 
-
+    IEnumerator attack()
+    {
+        canAttack = false;
+        ani.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(.5f);
+        if(Vector3.Distance(transform.position, player.transform.position) < attackDistance)
+        {
+            player.GetComponent<PlayerMove>().TakeDamage(damage);
+        }
+        yield return new WaitForSeconds(.5f);
+        ani.SetBool("isAttacking", false);
+        yield return new WaitForSeconds(.75f);
+        canAttack= true;
+    }
 
 
 
