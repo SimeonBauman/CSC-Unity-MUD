@@ -159,7 +159,7 @@ public class GenerateMap : MonoBehaviour
             Debug.Log(room[i].transform.position);
             HealthBar.SetActive(true);
             player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = new Vector3(room[i].transform.position.x, 0f, room[i].transform.position.z);
+            player.transform.position = new Vector3(room[i].transform.position.x, 2f, room[i].transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
             var ene = room[i].GetComponent<Room>().enemies;
             for(int j =0; j < ene.Length; j++)
@@ -169,7 +169,8 @@ public class GenerateMap : MonoBehaviour
                     ene[j].GetComponent<EnemyBrain>().health = 0;
                 }
             }
-            GameObject g =Instantiate(startScene, player.transform.position, player.transform.rotation);
+            Vector3 pos = new Vector3(player.transform.position.x,1,player.transform.position.z);
+            GameObject g =Instantiate(startScene,pos, player.transform.rotation);
             var s = g.GetComponent<StartGame>();
             s.player = player;
             StartCoroutine(s.startCut());
