@@ -15,7 +15,7 @@ public class GenerateMap : MonoBehaviour
     bool going = false;
 
     public GameObject monster;
-
+    public GameObject startScene;
     public GameObject loadingText;
     public GameObject HealthBar;
     // Start is called before the first frame update
@@ -169,6 +169,10 @@ public class GenerateMap : MonoBehaviour
                     ene[j].GetComponent<EnemyBrain>().health = 0;
                 }
             }
+            GameObject g =Instantiate(startScene, player.transform.position, player.transform.rotation);
+            var s = g.GetComponent<StartGame>();
+            s.player = player;
+            StartCoroutine(s.startCut());
         }
         else
         {
