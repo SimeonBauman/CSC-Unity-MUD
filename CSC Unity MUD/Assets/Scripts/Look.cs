@@ -6,37 +6,38 @@ public class Look : MonoBehaviour
 {
     public Transform player;
     public float sensitivity;
-    float y = 0;
+   
     public bool inMenu;
-    float yOff = 0;
-    float xOff = 0;
+  
+
+    
+    float xRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        inMenu = false;
-        yOff = Input.mousePosition.y;
-        xOff = Input.mousePosition.x;
+        inMenu = true;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (!inMenu)
         {
-            
-            y = (Input.mousePosition.y - yOff) * sensitivity;
-            y = Mathf.Clamp(y, -90f, 90f);
-            transform.localRotation = Quaternion.AngleAxis(y, Vector3.left);
-            player.localRotation = Quaternion.AngleAxis((Input.mousePosition.x-xOff) * sensitivity, Vector3.up);
-            //Cursor.lockState = CursorLockMode.Locked;
+            float mouseX = Input.GetAxis("Mouse X") * sensitivity *Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * sensitivity *Time.deltaTime;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            player.transform.Rotate(Vector3.up * mouseX);
+
+           
         }
         else
         {
-            yOff = Input.mousePosition.y - yOff;
-            xOff = Input.mousePosition.x - xOff;
-            Cursor.lockState = CursorLockMode.None;
+           
         }
         
        
