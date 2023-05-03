@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class PlayerMove : MonoBehaviour
 {
     public int speed = 100;
@@ -25,6 +26,9 @@ public class PlayerMove : MonoBehaviour
     public int souls = 0;
 
     public TMP_Text soulValue;
+
+    public Image deathBack;
+    public TMP_Text deathText;
 
     // Start is called before the first frame update
     void Start()
@@ -81,8 +85,26 @@ public class PlayerMove : MonoBehaviour
     {
         if(health <= 0)
         {
+            
+            StartCoroutine(deathScreen());
             Debug.Log("dead");
         }
     }
 
+
+    IEnumerator deathScreen()
+    {
+        float i = 0;
+        yield return new WaitForSecondsRealtime(.25f);
+        Time.timeScale = 0;
+        while (i < 255){
+            deathBack.color = new Color32(0, 0, 0, (byte)i);
+            deathText.color = new Color32(180, 11, 11, (byte)i);
+            yield return new WaitForSecondsRealtime(.01f);
+            i += 5;
+        }
+
+        yield return new WaitForSecondsRealtime(4);
+        SceneManager.LoadScene(0);
+    }
 }

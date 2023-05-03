@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
         this.size = Data.mapSize;
         this.renderDist = Data.renderDist;
         Data.mapReady = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
