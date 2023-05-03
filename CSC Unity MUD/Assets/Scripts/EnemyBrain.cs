@@ -17,7 +17,7 @@ public class EnemyBrain : MonoBehaviour
     bool canAttack;
     public int attackDistance;
     public int damage = 5;
-    int souls;
+    public int souls;
     // Start is called before the first frame update
     void Start()
     {
