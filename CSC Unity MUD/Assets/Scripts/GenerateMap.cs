@@ -168,7 +168,11 @@ public class GenerateMap : MonoBehaviour
             {
                 if(ene[j] != null)
                 {
-                    ene[j].GetComponent<EnemyBrain>().souls = -1;
+                    if(ene[j].GetComponent<EnemyBrain>().souls != 0)
+                    {
+                        ene[j].GetComponent<EnemyBrain>().souls = 0;
+                    }
+                    
                     ene[j].GetComponent<EnemyBrain>().health = 0;
                 }
             }
