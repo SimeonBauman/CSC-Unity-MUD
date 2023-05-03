@@ -22,6 +22,8 @@ public class PlayerMove : MonoBehaviour
 
     public Image healthBar;
 
+    public int souls = 0;
+
     // Start is called before the first frame update
     void Start()
     {

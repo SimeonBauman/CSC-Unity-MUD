@@ -42,6 +42,7 @@ public class EnemyBrain : MonoBehaviour
 
     void movement()
     {
+        transform.position = new Vector3(transform.position.x,3f,transform.position.z);
         if (target != null)
         {
             if (Vector3.Distance(transform.position, player.transform.position) > 3 &&  canAttack)

@@ -10,7 +10,7 @@ public class WeaponStats : MonoBehaviour
     public string itemName;
     public float fireRate = 1f;
 
-
+    public int cost;
    
 
 

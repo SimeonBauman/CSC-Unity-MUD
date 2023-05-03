@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 3
   discription: It might be a bit more than lightly used
-  profile: {fileID: 21300000, guid: ddf2e76e8a1f88f46ae1e42277850b48, type: 3}
+  profile: {fileID: 21300000, guid: 65e6996a6ac5fc545819b51a639aff8b, type: 3}
   itemName: Rusty Sword
   fireRate: 1
 --- !u!64 &5682294703933436549

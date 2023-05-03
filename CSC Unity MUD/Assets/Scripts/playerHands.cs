@@ -111,6 +111,7 @@ public class playerHands : MonoBehaviour
         }
         //invetory[pos].transform.position =;
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
         menu.SetActive(false);
     }
 
