@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMove : MonoBehaviour
 {
     public int speed = 100;
+    int actualSpeed;
     CharacterController controller;
     public bool canMove;
 
@@ -38,6 +39,7 @@ public class PlayerMove : MonoBehaviour
         controller = GetComponent<CharacterController>(); 
         originalPos = cam.transform.localPosition;
         maxHealth = health;
+        actualSpeed = speed;
     }
 
     // Update is called once per frame
@@ -70,6 +72,10 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
+    public void resetSpeed()
+    {
+        speed = actualSpeed;
+    }
     public void TakeDamage(int damage)
     {
         
@@ -97,7 +103,7 @@ public class PlayerMove : MonoBehaviour
         float i = 0;
         yield return new WaitForSecondsRealtime(.25f);
         Time.timeScale = 0;
-        while (i < 255){
+        while (i <= 255){
             deathBack.color = new Color32(0, 0, 0, (byte)i);
             deathText.color = new Color32(180, 11, 11, (byte)i);
             yield return new WaitForSecondsRealtime(.01f);

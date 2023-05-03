@@ -10,11 +10,12 @@ public class LoadingText : MonoBehaviour
     public bool typing = false;
     string currentString = "";
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        currentString = "";
         StartCoroutine(loadingText());
         StartCoroutine(cursor());
+        
     }
     
 

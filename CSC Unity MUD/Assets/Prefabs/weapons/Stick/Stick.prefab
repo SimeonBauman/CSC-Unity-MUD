@@ -46,11 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa107b94bea44db43be8e9ea0e95e904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 2
   discription: Its a wooden Stick
   profile: {fileID: 21300000, guid: 7678c1dc014cd464bae23f802798dbec, type: 3}
   itemName: Wooden Stick
   fireRate: 1
+  cost: 0
 --- !u!64 &-3458307474107885268
 MeshCollider:
   m_ObjectHideFlags: 0

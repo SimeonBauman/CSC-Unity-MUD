@@ -87,7 +87,7 @@ public class playerHands : MonoBehaviour
         
         int layer_mask = LayerMask.GetMask("enemy");
         RaycastHit hit;
-        if (Physics.Raycast(eyes.transform.position, eyes.transform.TransformDirection(Vector3.forward), out hit, 3f, layer_mask))
+        if (Physics.Raycast(eyes.transform.position, eyes.transform.TransformDirection(Vector3.forward), out hit, 3.5f, layer_mask))
         {
             
             hit.transform.gameObject.GetComponent<EnemyBrain>().health -= damage;

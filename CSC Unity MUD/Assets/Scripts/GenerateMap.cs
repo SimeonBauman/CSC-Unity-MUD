@@ -153,6 +153,7 @@ public class GenerateMap : MonoBehaviour
     void placePlayer()
     {
         int i = Random.Range(0, size*size);
+
         loadingText.SetActive(false);
         Debug.Log(i);
         if (room[i] != null)

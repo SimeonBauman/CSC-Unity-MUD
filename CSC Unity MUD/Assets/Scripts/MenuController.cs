@@ -59,7 +59,8 @@ public class MenuController : MonoBehaviour
         {
             Data.RSeed = seed;
         }
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
 
     }
 }
