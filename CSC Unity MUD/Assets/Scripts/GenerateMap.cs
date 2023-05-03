@@ -35,7 +35,7 @@ public class GenerateMap : MonoBehaviour
         if (going)
         {
             
-            checkRenderDistance();
+           checkRenderDistance();
         }
         
     }
@@ -146,6 +146,7 @@ public class GenerateMap : MonoBehaviour
         generateEnemies();
         placePlayer();
         Data.mapReady = true;
+        //StartCoroutine(checkRenderDistance());
         going = true;
     }
 
@@ -230,7 +231,13 @@ public class GenerateMap : MonoBehaviour
                     room[i].GetComponent<Room>().enableRoom();
                 }
             }
+            
+            /*if(i % 10 == 0)
+            {
+                yield return null;
+            }*/
         }
+        //StartCoroutine(checkRenderDistance());
     }
 
     

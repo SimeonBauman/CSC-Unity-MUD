@@ -898,7 +898,7 @@ MonoBehaviour:
   wallWithExit: {fileID: 1618258599916505039, guid: d6fd98ae5c6120140ac1ebca5ef3cdb8, type: 3}
   player: {fileID: 975845260}
   coolDude: {fileID: 8039669327208652321, guid: 56cabe70b0803a2419b0bdbfda5a41b2, type: 3}
-  renderdist: 4
+  renderdist: 3
   monster: {fileID: 4254417564906457629, guid: cfac8b16c60ea4442bc3b6885ada1d56, type: 3}
   startScene: {fileID: 2246232287456591412, guid: 705662d8071d5c14281c6ea5e9f1a2c0, type: 3}
   loadingText: {fileID: 2095827990}
