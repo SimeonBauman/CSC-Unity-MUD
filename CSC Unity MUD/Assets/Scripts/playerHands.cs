@@ -24,9 +24,11 @@ public class playerHands : MonoBehaviour
     float fireRate;
     public int damage;
 
-    bool canSwing;
+    public bool canSwing;
 
     public GameObject eyes;
+
+    public GameObject buyMenu;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,6 +115,7 @@ public class playerHands : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         menu.SetActive(false);
+        canSwing = true;
     }
 
     public void showOptions(GameObject Replacement)

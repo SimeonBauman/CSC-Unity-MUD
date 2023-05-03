@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject itemInfo;
     public int health = 10;
-    int maxHealth;
+    public int maxHealth;
     public GameObject cam;
 
     public float shakeDuration = 0f;

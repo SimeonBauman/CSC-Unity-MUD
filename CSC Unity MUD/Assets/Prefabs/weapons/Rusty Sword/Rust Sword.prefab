@@ -52,6 +52,7 @@ MonoBehaviour:
   profile: {fileID: 21300000, guid: 65e6996a6ac5fc545819b51a639aff8b, type: 3}
   itemName: Rusty Sword
   fireRate: 1
+  cost: 10
 --- !u!64 &5682294703933436549
 MeshCollider:
   m_ObjectHideFlags: 0

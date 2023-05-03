@@ -7,7 +7,7 @@ public class CoolDudeBrain : MonoBehaviour
 {
     public int state = 0;
     public GameObject player;
-    public GameObject BuyMenu;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +32,10 @@ public class CoolDudeBrain : MonoBehaviour
     {
         if(other.gameObject == player)
         {
+            player.GetComponent<playerHands>().canSwing = false;
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0;
-            BuyMenu.SetActive(true);
+            player.GetComponent<playerHands>().buyMenu.SetActive(true);
         }
     }
 }

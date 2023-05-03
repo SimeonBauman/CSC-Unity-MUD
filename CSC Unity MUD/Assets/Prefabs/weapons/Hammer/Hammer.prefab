@@ -133,3 +133,4 @@ MonoBehaviour:
   profile: {fileID: 21300000, guid: 314be40375b8a0e49ac9be0ce487e708, type: 3}
   itemName: Hammer
   fireRate: 1
+  cost: 15
