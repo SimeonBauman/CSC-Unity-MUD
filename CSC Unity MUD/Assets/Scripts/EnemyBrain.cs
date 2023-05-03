@@ -13,13 +13,15 @@ public class EnemyBrain : MonoBehaviour
     public Rigidbody rb;
     public GameObject eyes;
     Animator ani;
-
+    public GameObject soul;
     bool canAttack;
     public int attackDistance;
     public int damage = 5;
+    int souls;
     // Start is called before the first frame update
     void Start()
     {
+        souls = Random.Range(1, 4);
         target = player.transform;
         parentRoom = this.GetComponentInParent<Transform>().gameObject;
         rb = GetComponent<Rigidbody>();
@@ -110,6 +112,11 @@ public class EnemyBrain : MonoBehaviour
         if(health <= 0)
         {
             transform.GetComponentInParent<Room>().liveInhabs -= 1;
+            Vector3 pos = transform.position;
+            for(int i = 0; i < souls;i++)
+            {
+                Instantiate(soul, new Vector3(Random.Range(-3f, 3f) + pos.x, 1, Random.Range(-3f, 3f) + pos.z), Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }

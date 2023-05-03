@@ -11,6 +11,7 @@ public class GenerateMap : MonoBehaviour
     public GameObject wall;
     public GameObject wallWithExit;
     public GameObject player;
+    public GameObject coolDude;
     public float renderdist = 5;
     bool going = false;
 
@@ -21,7 +22,7 @@ public class GenerateMap : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        Random.InitState(Data.RSeed);
+        //Random.InitState(Data.RSeed);
         this.renderdist = Data.renderDist;
         this.size = Data.mapSize;
         HealthBar.SetActive(false);
@@ -169,10 +170,12 @@ public class GenerateMap : MonoBehaviour
                     ene[j].GetComponent<EnemyBrain>().health = 0;
                 }
             }
-            Vector3 pos = new Vector3(player.transform.position.x,1,player.transform.position.z);
+            Vector3 pos = new Vector3(player.transform.position.x,2,player.transform.position.z);
             GameObject g =Instantiate(startScene,pos, player.transform.rotation);
             var s = g.GetComponent<StartGame>();
             s.player = player;
+            coolDude = Instantiate(coolDude, new Vector3(Random.Range(5,9) + pos.x,2, Random.Range(5, 9) + pos.z), Quaternion.identity);
+            coolDude.GetComponent<CoolDudeBrain>().player = player;
             StartCoroutine(s.startCut());
         }
         else

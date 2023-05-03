@@ -11,7 +11,7 @@ public class CoolDudeBrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("player");
+        //player = GameObject.FindGameObjectWithTag("player");
     }
 
     // Update is called once per frame

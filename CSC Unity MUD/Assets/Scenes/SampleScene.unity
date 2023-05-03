@@ -762,6 +762,7 @@ MonoBehaviour:
   wall: {fileID: 1290576971815270634, guid: 1751c3a3064edc94a93a345d33eaa908, type: 3}
   wallWithExit: {fileID: 1618258599916505039, guid: d6fd98ae5c6120140ac1ebca5ef3cdb8, type: 3}
   player: {fileID: 975845260}
+  coolDude: {fileID: 8039669327208652321, guid: 56cabe70b0803a2419b0bdbfda5a41b2, type: 3}
   renderdist: 4
   monster: {fileID: 4254417564906457629, guid: cfac8b16c60ea4442bc3b6885ada1d56, type: 3}
   startScene: {fileID: 2246232287456591412, guid: 705662d8071d5c14281c6ea5e9f1a2c0, type: 3}
@@ -3540,6 +3541,7 @@ MonoBehaviour:
   b2: {fileID: 1195106531}
   menu: {fileID: 1667074127}
   damage: 0
+  canSwing: 0
   eyes: {fileID: 1027239507}
   buyMenu: {fileID: 141233509}
 --- !u!1 &978462774
@@ -4058,7 +4060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 975845266}
-  sensitivity: 50
+  sensitivity: 75
   inMenu: 0
 --- !u!114 &1027239510
 MonoBehaviour:
