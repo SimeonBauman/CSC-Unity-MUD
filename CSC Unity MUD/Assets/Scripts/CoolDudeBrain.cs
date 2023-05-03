@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class CoolDudeBrain : MonoBehaviour
 {
@@ -15,11 +15,22 @@ public class CoolDudeBrain : MonoBehaviour
     public AudioClip ComeOver;
     public AudioClip Monolouge;
 
+    public AudioClip[] HealAudios;
+
+    public AudioClip[] BuyAudios;
+
+    public AudioClip[] WeaponUpgrade;
+
+    public AudioClip[] WelcomeAudios;
+
+    public AudioClip noBuy;
+
     public AudioSource Audio;
 
     // Start is called before the first frame update
     void Start()
     {
+        player.GetComponent<playerHands>().buyMenu.GetComponent<BuyMenu>().coolDude = this.gameObject;
         StartCoroutine(startAudio());
         //player = GameObject.FindGameObjectWithTag("player");
     }
@@ -69,6 +80,7 @@ public class CoolDudeBrain : MonoBehaviour
             }
             else if (state == 2)
             {
+                playAudio(WelcomeAudios[Random.Range(0, WelcomeAudios.Length)]);
                 player.GetComponent<playerHands>().canSwing = false;
                 Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0;
@@ -77,7 +89,7 @@ public class CoolDudeBrain : MonoBehaviour
         }
     }
 
-    void playAudio(AudioClip ac)
+    public void playAudio(AudioClip ac)
     {
         Audio.clip = ac;
         Audio.Play();

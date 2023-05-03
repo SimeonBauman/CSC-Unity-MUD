@@ -13,6 +13,8 @@ public class BuyMenu : MonoBehaviour
 
     Button leave;
     Button take;
+
+    public GameObject coolDude;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,9 +43,7 @@ public class BuyMenu : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            this.gameObject.SetActive(false);
-            Time.timeScale = 1;
+            noBuy();
         }
     }
 
@@ -56,9 +56,7 @@ public class BuyMenu : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            this.gameObject.SetActive(false);
-            Time.timeScale = 1;
+            noBuy();
         }
     }
 
@@ -71,9 +69,7 @@ public class BuyMenu : MonoBehaviour
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            this.gameObject.SetActive(false);
-            Time.timeScale = 1;
+            noBuy();
         }
     }
 
@@ -85,11 +81,14 @@ public class BuyMenu : MonoBehaviour
             pm.health = pm.maxHealth;
             pm.souls -= 2;
             pm.healthBar.transform.localScale = new Vector2(((float)pm.health / (float)pm.maxHealth) * 10, 1);
+            Cursor.lockState = CursorLockMode.Locked;
+            this.gameObject.SetActive(false);
+            Time.timeScale = 1;
         }
-        Cursor.lockState = CursorLockMode.Locked;
-        this.gameObject.SetActive(false);
-        Time.timeScale = 1;
-        ph.canSwing = true;
+        else
+        {
+            noBuy();
+        }
     }
 
     public void UpgradeWeapons()
@@ -104,11 +103,15 @@ public class BuyMenu : MonoBehaviour
                     ph.invetory[i].GetComponent<WeaponStats>().Damage += 5;
                 }
             }
+            Cursor.lockState = CursorLockMode.Locked;
+            this.gameObject.SetActive(false);
+            Time.timeScale = 1;
         }
-        Cursor.lockState= CursorLockMode.Locked;
-        this.gameObject.SetActive(false);
-        Time.timeScale = 1;
-        ph.canSwing = true;
+        else
+        {
+            noBuy();
+        }
+        
     }
 
     void takeWeapon(GameObject loot)
@@ -119,5 +122,13 @@ public class BuyMenu : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    void noBuy()
+    {
+        CoolDudeBrain Cb = coolDude.GetComponent<CoolDudeBrain>();
+        Cursor.lockState = CursorLockMode.Locked;
+        this.gameObject.SetActive(false);
+        Time.timeScale = 1;
+        Cb.playAudio(Cb.noBuy);
+    }
     
 }
