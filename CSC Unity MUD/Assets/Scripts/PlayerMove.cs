@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class PlayerMove : MonoBehaviour
 {
     public int speed = 100;
@@ -24,6 +24,8 @@ public class PlayerMove : MonoBehaviour
 
     public int souls = 0;
 
+    public TMP_Text soulValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +39,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        soulValue.text = souls.ToString();
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 

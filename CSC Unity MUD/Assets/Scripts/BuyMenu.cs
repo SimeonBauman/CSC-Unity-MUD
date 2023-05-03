@@ -23,7 +23,7 @@ public class BuyMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeScale == 0 && Input.GetKeyDown(KeyCode.Escape))
+        if(Time.timeScale == 0 && Input.GetKeyDown(KeyCode.Return))
         {
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
