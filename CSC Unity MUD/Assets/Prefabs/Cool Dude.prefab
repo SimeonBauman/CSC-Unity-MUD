@@ -214,6 +214,7 @@ MonoBehaviour:
   state: 0
   player: {fileID: 0}
   stick: {fileID: 7563424616259668610, guid: 854a31388b5f0724c9ab7f2a41adb128, type: 3}
+  finalEni: {fileID: 4254417564906457629, guid: 0a62bd1d292714e418d2437d41479d10, type: 3}
   wakeUp: {fileID: 8300000, guid: 0162917cff673ae47a7f36e3a364fdda, type: 3}
   ComeOver: {fileID: 8300000, guid: b8408b1101847fc499d653b1aa4a931d, type: 3}
   Monolouge: {fileID: 8300000, guid: 0a042f88e3bf2a34fb05b3b11d26ba85, type: 3}
@@ -230,7 +231,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1eadae82a6e972348a7ef4c43d9ee0e3, type: 3}
   - {fileID: 8300000, guid: 6acc037a883fd6e4e94e6bc45863b2d8, type: 3}
   noBuy: {fileID: 8300000, guid: a73f6d398b7148245bc4246722ece3c8, type: 3}
+  AlreadyOwned: {fileID: 8300000, guid: d4c703770d4592c4e8495322bd5fc3c6, type: 3}
+  Call: {fileID: 8300000, guid: 7bab061a8ac3f114a9193a375310f7ea, type: 3}
+  fightIntro: {fileID: 8300000, guid: 425fe34fd87a4c841b63a2d0972bc315, type: 3}
+  taunts:
+  - {fileID: 8300000, guid: e28611bb31b4ab145baad146335e42fd, type: 3}
+  - {fileID: 8300000, guid: 3f02431922d2231478ba7f377fa02a72, type: 3}
   Audio: {fileID: 4657877297091885540}
+  souls: 1
+  liveMonsters: 0
 --- !u!65 &2187579836767391179
 BoxCollider:
   m_ObjectHideFlags: 0

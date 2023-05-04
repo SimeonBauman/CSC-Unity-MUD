@@ -19,6 +19,8 @@ public class GenerateMap : MonoBehaviour
     public GameObject startScene;
     public GameObject loadingText;
     public GameObject HealthBar;
+
+    public GameObject Teleporter;
     // Start is called before the first frame update
     private void Start()
     {
@@ -145,6 +147,7 @@ public class GenerateMap : MonoBehaviour
         }
         generateEnemies();
         placePlayer();
+        placeTeleporter();
         Data.mapReady = true;
         //StartCoroutine(checkRenderDistance());
         going = true;
@@ -169,10 +172,9 @@ public class GenerateMap : MonoBehaviour
             {
                 if(ene[j] != null)
                 {
-                    if(ene[j].GetComponent<EnemyBrain>().souls != 0)
-                    {
-                        ene[j].GetComponent<EnemyBrain>().souls = 0;
-                    }
+                    
+                        ene[j].GetComponent<EnemyBrain>().souls = -1;
+                    
                     
                     ene[j].GetComponent<EnemyBrain>().health = 0;
                 }
@@ -199,22 +201,35 @@ public class GenerateMap : MonoBehaviour
             if(room[i] != null)
             {
                 GameObject g = room[i];
-                int r = Random.Range(0, 5);
+                int r = Random.Range(1, 5);
                 for(int j = 0; j < r; j++)
                 {
-                    int t = Random.Range(0, 10);
-                    if (Random.Range(0, 10) < 5)
-                    {
+                    
+                   
                         GameObject m = Instantiate(monster, g.transform);
                         m.transform.localPosition = new Vector3(Random.Range(-9.5f, 9.5f), 2, Random.Range(-9.5f, 9.5f));
                         m.transform.localScale = new Vector3(1, 2, 1);
                         m.GetComponent<EnemyBrain>().player = this.player;
                         g.GetComponent<Room>().enemies[j] = m;
                         g.GetComponent<Room>().liveInhabs += 1;
-                    }
+                    
                 }
 
             }
+        }
+    }
+
+    void placeTeleporter()
+    {
+        int i = Random.Range(0, size * size);
+
+        if (room[i] != null)
+        {
+            Instantiate(Teleporter, room[i].transform.position,Quaternion.identity);
+        }
+        else
+        {
+            placeTeleporter();
         }
     }
     

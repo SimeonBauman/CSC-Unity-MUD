@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
-public class EnemyBrain : MonoBehaviour
-{
 
+public class FinalEnemy : MonoBehaviour
+{
     public int health = 0;
     public float speed = 5f;
     public Transform target;
     public GameObject player;
-    GameObject parentRoom;
+    public GameObject coolDude;
     public Rigidbody rb;
     public GameObject eyes;
     Animator ani;
@@ -17,19 +16,19 @@ public class EnemyBrain : MonoBehaviour
     bool canAttack;
     public int attackDistance;
     public int damage = 5;
-    public int souls = 0;
+    
 
-  
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
         target = player.transform;
-        parentRoom = this.GetComponentInParent<Transform>().gameObject;
+        
         rb = GetComponent<Rigidbody>();
         ani = GetComponent<Animator>();
         canAttack = true;
-        if(eyes != null)
+        if (eyes != null)
         {
             eyes = this.gameObject;
         }
@@ -40,16 +39,16 @@ public class EnemyBrain : MonoBehaviour
     {
         checkHealth();
         movement();
-        
+
     }
-    
+
 
     void movement()
     {
-        transform.position = new Vector3(transform.position.x,3f,transform.position.z);
+        transform.position = new Vector3(transform.position.x, 3f, transform.position.z);
         if (target != null)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) > 3 &&  canAttack)
+            if (Vector3.Distance(transform.position, player.transform.position) > 3 && canAttack)
             {
                 rb.velocity = transform.forward * speed;
                 ani.SetBool("isMoving", true);
@@ -88,13 +87,13 @@ public class EnemyBrain : MonoBehaviour
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 100);
-        
+
     }
     bool canSeePlayer()
     {
-        int layer_mask = LayerMask.GetMask("player visuals","wall");
+        int layer_mask = LayerMask.GetMask("player visuals", "wall");
         RaycastHit hit;
-        if (Physics.Raycast(eyes.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity,layer_mask))
+        if (Physics.Raycast(eyes.transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer_mask))
         {
             if (hit.transform.gameObject == player)
             {
@@ -111,19 +110,15 @@ public class EnemyBrain : MonoBehaviour
 
     void checkHealth()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
-            transform.GetComponentInParent<Room>().liveInhabs -= 1;
-            Vector3 pos = transform.position;
-            if(souls != -1)
-            {
-                souls = Random.Range(1, 4);
-            }
             
-            for (int i = 0; i < souls;i++)
-            {
-                Instantiate(soul, new Vector3(Random.Range(-3f, 3f) + pos.x, 1, Random.Range(-3f, 3f) + pos.z), Quaternion.identity);
-            }
+            Vector3 pos = transform.position;
+
+            coolDude.GetComponent<CoolDudeBrain>().liveMonsters--;
+            
+            Instantiate(soul, new Vector3(Random.Range(-3f, 3f) + pos.x, 1, Random.Range(-3f, 3f) + pos.z), Quaternion.identity);
+            
             Destroy(gameObject);
         }
     }
@@ -135,17 +130,13 @@ public class EnemyBrain : MonoBehaviour
         canAttack = false;
         ani.SetBool("isAttacking", true);
         yield return new WaitForSeconds(.5f);
-        if(Vector3.Distance(transform.position, player.transform.position) < attackDistance)
+        if (Vector3.Distance(transform.position, player.transform.position) < attackDistance)
         {
             player.GetComponent<PlayerMove>().TakeDamage(damage);
         }
         yield return new WaitForSeconds(.5f);
         ani.SetBool("isAttacking", false);
         yield return new WaitForSeconds(.75f);
-        canAttack= true;
+        canAttack = true;
     }
-
-
-
-
 }

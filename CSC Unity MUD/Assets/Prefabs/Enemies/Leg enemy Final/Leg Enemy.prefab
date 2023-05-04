@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4254417564906457627}
   - component: {fileID: 4254417564906457628}
-  - component: {fileID: 5301631860565905983}
+  - component: {fileID: -2270613724501999087}
   - component: {fileID: 8253472747735935020}
   m_Layer: 10
   m_Name: Leg Enemy
@@ -88,7 +88,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &5301631860565905983
+--- !u!114 &-2270613724501999087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,20 +97,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4254417564906457629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a0895f9a1cb4d448842d7b1c2168746, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c2ec8b3111659c42a5ac40c6e9fccce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  speed: 8
+  health: 0
+  speed: 5
   target: {fileID: 0}
   player: {fileID: 0}
-  rb: {fileID: 0}
+  coolDude: {fileID: 0}
+  rb: {fileID: 8253472747735935020}
   eyes: {fileID: 684458093228577218}
-  soul: {fileID: 4808278342456817456, guid: 9934fc2dd659b564490cdc497b5ad9eb, type: 3}
-  attackDistance: 4
+  soul: {fileID: 4808278342456817456, guid: c99da74e908e5aa45a6bfe2979456a9f, type: 3}
+  attackDistance: 0
   damage: 5
-  souls: 0
-  Ads: {fileID: 0}
 --- !u!54 &8253472747735935020
 Rigidbody:
   m_ObjectHideFlags: 0

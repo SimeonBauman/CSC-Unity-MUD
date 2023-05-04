@@ -31,6 +31,11 @@ public class PlayerMove : MonoBehaviour
     public Image deathBack;
     public TMP_Text deathText;
 
+    public bool canCall;
+
+    public GameObject coolDude;
+    public AudioSource Ads;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +45,14 @@ public class PlayerMove : MonoBehaviour
         originalPos = cam.transform.localPosition;
         maxHealth = health;
         actualSpeed = speed;
+        canCall= false;
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        call();
         soulValue.text = souls.ToString();
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -72,6 +80,15 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
+
+    public void call()
+    {
+        if(canCall && Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 pos = transform.position;
+            coolDude.transform.position = new Vector3(Random.Range(-5f,5f) + pos.x,2,Random.Range(-5f,5f) + pos.z);
+        }
+    }
     public void resetSpeed()
     {
         speed = actualSpeed;
@@ -82,7 +99,7 @@ public class PlayerMove : MonoBehaviour
         health-= damage;
         float d = (float)damage;
         shakeDuration = d/50;
-        
+        Ads.Play();
         healthBar.transform.localScale = new Vector2(((float)health / (float)maxHealth) * 10, 1);
         checkHealth();
     }

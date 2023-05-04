@@ -8,7 +8,7 @@ public class CoolDudeBrain : MonoBehaviour
     public int state = 0;
     public GameObject player;
     public GameObject stick;
-
+    public GameObject finalEni;
 
 
     public AudioClip wakeUp;
@@ -25,12 +25,24 @@ public class CoolDudeBrain : MonoBehaviour
 
     public AudioClip noBuy;
 
+    public AudioClip AlreadyOwned;
+
+    public AudioClip Call;
+
+    public AudioClip fightIntro;
+
+    public AudioClip[] taunts;
+
     public AudioSource Audio;
 
+    public int souls = 1;
+
+    public int liveMonsters = 0;
     // Start is called before the first frame update
     void Start()
     {
         player.GetComponent<playerHands>().buyMenu.GetComponent<BuyMenu>().coolDude = this.gameObject;
+        player.GetComponent<PlayerMove>().coolDude = this.gameObject;
         StartCoroutine(startAudio());
         //player = GameObject.FindGameObjectWithTag("player");
     }
@@ -50,6 +62,7 @@ public class CoolDudeBrain : MonoBehaviour
             
             state = 2;
         }
+        
     }
 
     void lookAtPlayer()
@@ -100,5 +113,42 @@ public class CoolDudeBrain : MonoBehaviour
         
         player.GetComponent<playerHands>().pickUpItem(stick,0);
         
+    }
+
+    public IEnumerator startFight()
+    {
+        playAudio(fightIntro);
+        while(transform.position.y < 25)
+        {
+            yield return null;
+            transform.position = new Vector3(transform.position.x, transform.position.y + (10*Time.deltaTime), transform.position.z);
+        }
+        StartCoroutine(spawnEn());
+        StartCoroutine(sayLines());
+    }
+
+    IEnumerator spawnEn()
+    {
+        Vector3 pos = transform.position;
+        int ind = 1;
+        while (ind <= souls)
+        {
+            GameObject g = Instantiate(finalEni, new Vector3(pos.x, 2.5f, pos.z), Quaternion.identity);
+            g.GetComponent<FinalEnemy>().health = ind;
+            g.GetComponent<FinalEnemy>().player = player;
+            g.GetComponent<FinalEnemy>().coolDude = this.gameObject;
+            liveMonsters++;
+            ind++;
+            yield return new WaitForSeconds(10);
+        }
+    }
+
+    IEnumerator sayLines()
+    {
+
+        yield return new WaitForSeconds(45);
+        int i = Random.Range(0, taunts.Length);
+        playAudio(taunts[i]);
+        StartCoroutine(sayLines());
     }
 }

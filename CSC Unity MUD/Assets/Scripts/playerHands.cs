@@ -26,16 +26,25 @@ public class playerHands : MonoBehaviour
 
     public bool canSwing;
 
+    public bool inFinal;
+
     public GameObject eyes;
 
     public GameObject buyMenu;
+
+    public GameObject blood;
+
+    public AudioSource Ads;
+
+    GameObject tempBlood;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         anim.SetBool("isSwinging", false);
         canSwing = true;
-        
+        inFinal = false;
+        Ads = GetComponent<AudioSource>();
         //pickUpItem(invetory[0], 0);
         if (invetory[1] != null)
         {
@@ -67,7 +76,7 @@ public class playerHands : MonoBehaviour
             if (invetory[(active + 1) % 2] != null)
             {
                 StartCoroutine(switchAni());
-                setStats();
+                
                 //invetory[active].transform.position = hand.transform.localPosition;
             }
         }
@@ -79,6 +88,7 @@ public class playerHands : MonoBehaviour
         invetory[active].SetActive(false);
         invetory[(active + 1) % 2].SetActive(true);
         active = (active + 1) % 2;
+        setStats();
         yield return new WaitForSeconds(.25f);
         anim.SetBool("isSwitching", false);
     }
@@ -89,8 +99,20 @@ public class playerHands : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(eyes.transform.position, eyes.transform.TransformDirection(Vector3.forward), out hit, 3.5f, layer_mask))
         {
-            
-            hit.transform.gameObject.GetComponent<EnemyBrain>().health -= damage;
+            if(tempBlood != null)
+            {
+                Destroy(tempBlood);
+            }
+            tempBlood = Instantiate(blood, hit.point, hit.transform.rotation);
+            if (!inFinal)
+            {
+                hit.transform.gameObject.GetComponent<EnemyBrain>().health -= damage;
+            }
+            else
+            {
+                hit.transform.gameObject.GetComponent<FinalEnemy>().health -= damage;
+            }
+            Ads.Play();
         }
     }
     public void pickUpItem(GameObject g, int pos)
@@ -139,7 +161,7 @@ public class playerHands : MonoBehaviour
         pickUpItem(Replacement, 1);
     }
 
-    void setStats()
+    public void setStats()
     {
         this.fireRate = invetory[active].GetComponent<WeaponStats>().fireRate;
         this.damage = invetory[active].GetComponent<WeaponStats>().Damage;
