@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 
 public class CoolDudeBrain : MonoBehaviour
@@ -70,11 +71,19 @@ public class CoolDudeBrain : MonoBehaviour
         }
         if(ind == souls && liveMonsters == 0)
         {
-            Vector3 pos = new Vector3(transform.position.x , transform.position.y - 3, transform.position.z);
-            Debug.Log("fight Over");
+            
             playAudio(FinalLine);
-            Instantiate(Explosion, pos, Quaternion.identity);
+            
             ind = 0;
+            souls = 0;
+            liveMonsters = -1;
+        }
+        if(liveMonsters == -1 && !Audio.isPlaying)
+        {
+            
+            Debug.Log("fight Over");
+            Instantiate(Explosion, transform.position, Quaternion.identity);
+            liveMonsters = -2;
         }
     }
 
@@ -148,12 +157,12 @@ public class CoolDudeBrain : MonoBehaviour
         {
             ind++;
             GameObject g = Instantiate(finalEni, new Vector3(pos.x, 2.5f, pos.z), Quaternion.identity);
-            g.GetComponent<FinalEnemy>().health = ind;
+            g.GetComponent<FinalEnemy>().health = ind + 5;
             g.GetComponent<FinalEnemy>().player = player;
             g.GetComponent<FinalEnemy>().coolDude = this.gameObject;
             liveMonsters++;
             
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(4);
         }
     }
 

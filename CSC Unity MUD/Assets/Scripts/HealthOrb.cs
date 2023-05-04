@@ -8,6 +8,7 @@ public class HealthOrb : MonoBehaviour
     {
         if (other.transform.gameObject.tag.Equals("player"))
         {
+            other.GetComponent<PlayerMove>().TakeDamage(-(other.GetComponent<PlayerMove>().maxHealth - other.GetComponent<PlayerMove>().health));
             other.GetComponent<PlayerMove>().health = other.GetComponent<PlayerMove>().maxHealth;
             Destroy(this.gameObject);
         }

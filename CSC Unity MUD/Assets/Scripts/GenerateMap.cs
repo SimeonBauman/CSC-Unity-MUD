@@ -222,10 +222,15 @@ public class GenerateMap : MonoBehaviour
     void placeTeleporter()
     {
         int i = Random.Range(0, size * size);
-
-        if (room[i] != null)
+        
+        if (room[i] != null )
         {
-            Instantiate(Teleporter, room[i].transform.position,Quaternion.identity);
+            Vector2 roomXZ = new Vector2(room[i].transform.position.x, room[i].transform.position.z);
+            Vector2 playerXZ = new Vector2(player.transform.position.x, player.transform.position.z);
+            if (roomXZ != playerXZ)
+            {
+                Instantiate(Teleporter, room[i].transform.position, Quaternion.identity);
+            }
         }
         else
         {

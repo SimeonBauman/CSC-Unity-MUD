@@ -108,7 +108,7 @@ MonoBehaviour:
   rb: {fileID: 8253472747735935020}
   eyes: {fileID: 684458093228577218}
   soul: {fileID: 4808278342456817456, guid: c99da74e908e5aa45a6bfe2979456a9f, type: 3}
-  attackDistance: 0
+  attackDistance: 4
   damage: 5
 --- !u!54 &8253472747735935020
 Rigidbody:

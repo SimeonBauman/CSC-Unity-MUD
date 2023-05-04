@@ -98,8 +98,12 @@ public class PlayerMove : MonoBehaviour
         
         health-= damage;
         float d = (float)damage;
-        shakeDuration = d/50;
-        Ads.Play();
+        if(damage> 0)
+        {
+            shakeDuration = d / 50;
+            Ads.Play();
+        }
+        
         healthBar.transform.localScale = new Vector2(((float)health / (float)maxHealth) * 10, 1);
         checkHealth();
     }
