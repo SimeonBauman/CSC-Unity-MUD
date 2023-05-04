@@ -3898,6 +3898,7 @@ MonoBehaviour:
   menu: {fileID: 1667074127}
   damage: 0
   canSwing: 0
+  inFinal: 0
   eyes: {fileID: 1027239507}
   buyMenu: {fileID: 141233509}
   blood: {fileID: 1873121115054634011, guid: 4a98f19f06dfdb144b699cfd95a91b09, type: 3}

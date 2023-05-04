@@ -33,11 +33,17 @@ public class CoolDudeBrain : MonoBehaviour
 
     public AudioClip[] taunts;
 
+    public AudioClip FinalLine;
+
     public AudioSource Audio;
+
+    public GameObject Explosion;
 
     public int souls = 1;
 
     public int liveMonsters = 0;
+
+    int ind = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +68,14 @@ public class CoolDudeBrain : MonoBehaviour
             
             state = 2;
         }
-        
+        if(ind == souls && liveMonsters == 0)
+        {
+            Vector3 pos = new Vector3(transform.position.x , transform.position.y - 3, transform.position.z);
+            Debug.Log("fight Over");
+            playAudio(FinalLine);
+            Instantiate(Explosion, pos, Quaternion.identity);
+            ind = 0;
+        }
     }
 
     void lookAtPlayer()
@@ -130,15 +143,16 @@ public class CoolDudeBrain : MonoBehaviour
     IEnumerator spawnEn()
     {
         Vector3 pos = transform.position;
-        int ind = 1;
-        while (ind <= souls)
+        ind = 0;
+        while (ind < souls)
         {
+            ind++;
             GameObject g = Instantiate(finalEni, new Vector3(pos.x, 2.5f, pos.z), Quaternion.identity);
             g.GetComponent<FinalEnemy>().health = ind;
             g.GetComponent<FinalEnemy>().player = player;
             g.GetComponent<FinalEnemy>().coolDude = this.gameObject;
             liveMonsters++;
-            ind++;
+            
             yield return new WaitForSeconds(10);
         }
     }
@@ -151,4 +165,6 @@ public class CoolDudeBrain : MonoBehaviour
         playAudio(taunts[i]);
         StartCoroutine(sayLines());
     }
+
+
 }

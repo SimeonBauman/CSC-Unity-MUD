@@ -217,7 +217,7 @@ MonoBehaviour:
   finalEni: {fileID: 4254417564906457629, guid: 0a62bd1d292714e418d2437d41479d10, type: 3}
   wakeUp: {fileID: 8300000, guid: 0162917cff673ae47a7f36e3a364fdda, type: 3}
   ComeOver: {fileID: 8300000, guid: b8408b1101847fc499d653b1aa4a931d, type: 3}
-  Monolouge: {fileID: 8300000, guid: 0a042f88e3bf2a34fb05b3b11d26ba85, type: 3}
+  Monolouge: {fileID: 8300000, guid: 0162917cff673ae47a7f36e3a364fdda, type: 3}
   HealAudios:
   - {fileID: 8300000, guid: 3d9575be5e125414f8f8ea7089827c9a, type: 3}
   - {fileID: 8300000, guid: 98aa2bd78fca735488ac552db598fe5d, type: 3}
@@ -237,7 +237,9 @@ MonoBehaviour:
   taunts:
   - {fileID: 8300000, guid: e28611bb31b4ab145baad146335e42fd, type: 3}
   - {fileID: 8300000, guid: 3f02431922d2231478ba7f377fa02a72, type: 3}
+  FinalLine: {fileID: 8300000, guid: fbd58ac7d010f2249a2d60501aafe0ac, type: 3}
   Audio: {fileID: 4657877297091885540}
+  Explosion: {fileID: 7979487049560121853, guid: 0cf688e3e0a7eb947a9676e992ca8f73, type: 3}
   souls: 1
   liveMonsters: 0
 --- !u!65 &2187579836767391179
