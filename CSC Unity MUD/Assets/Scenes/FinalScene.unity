@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 392621438}
   - component: {fileID: 392621437}
+  - component: {fileID: 392621439}
   m_Layer: 0
   m_Name: Video Player
   m_TagString: Untagged
@@ -164,7 +165,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 0
+  - 0.15
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 01
@@ -190,6 +191,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &392621439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392621436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdf150a97e73034a971763cda9831dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &559095080
 GameObject:
   m_ObjectHideFlags: 0
